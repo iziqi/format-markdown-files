@@ -65,12 +65,12 @@ if __name__ == '__main__':
         print(f'Working on file: {note}') # 显示处理进度
 
         note_name = os.path.splitext(note)[0]
-        note_path = os.path.join(old_notes_folder, note)
+        note_to_be_splited = os.path.join(old_notes_folder, note)
 
         # 创建存放分割后notes的文件夹
-        note_folder = os.path.join(new_notes_folder, note_name) # 
-        shutil.rmtree(note_folder, ignore_errors=True)
-        if not os.path.exists(note_folder): os.makedirs(note_folder)
+        new_notes_folder = os.path.join(new_notes_folder, note_name) # 
+        shutil.rmtree(new_notes_folder, ignore_errors=True)
+        if not os.path.exists(new_notes_folder): os.makedirs(new_notes_folder)
 
         # 分割该note
-        split_md(note_path, note_folder)
+        split_md(note_to_be_splited, new_notes_folder)
