@@ -1,7 +1,25 @@
-# Split Markdown files
+# Format Markdown files
 
-## 使用方法
+## split_md
 
-1. 将需要分割的md文件放在`original_notes`文件夹中，然后运行`split_md.py`
-2. 会先按照一级标题创建文件夹，每个二级标题及其内容会以单独md文件保存在对应的一级标题文件夹中
-3. 分割后的md文件会保存在`separate_notes`文件夹中
+按照一二级标题分割文件，一级标题为文件夹，每个二级标题及其内容为该文件夹下的单独md文件。
+
+## merge_md
+
+合并文件夹下的md文件并保存为merged.md
+
+## decrease_hd_level
+
+所有标题降低若干级，默认为一级
+
+## increase_hd_level
+
+所有标题增加若干级，默认为一级
+
+## set_blank_lines
+
+设置两段之间的空行数，默认为空一行
+
+## links_on2ob
+
+将Onenote内链替换为Obsidian内链
