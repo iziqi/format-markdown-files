@@ -20,12 +20,12 @@ if __name__ == '__main__':
         note_name = os.path.splitext(note)[0].split('\\')[-1]
         print(f'\nWorking on file: {note_name}.md')  # 显示处理进度
 
-        on2ob.links_on2ob(note)  # 将Onenote内链替换为Obsidian内链
+        # on2ob.links_on2ob(note)  # 将Onenote内链替换为Obsidian内链
 
         fmd.set_blank_lines(note, num=1)  # 设置段落间空若干数
         fmd.decrease_hd_level(note, num=1)  # 所有标题降低若干级
-        fmd.increase_hd_level(note, num=1)  # 所有标题增加若干级
-        fmd.split_md(note)  # 分割md文件
+        # fmd.increase_hd_level(note, num=1)  # 所有标题增加若干级
+        # fmd.split_md(note)  # 分割md文件
         # fmd.format_on2md(note)  # 将提取的文本内容格式化，设置一二级标题等等
 
     fmd.merge_md(new_notes_folder)  # 合并md文件

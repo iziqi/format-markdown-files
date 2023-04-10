@@ -50,19 +50,33 @@ def split_md(note):
             f.write(seperate_note_text)
     print(f'Split md done.')
 
+def merge_md_helper(notes_folder, contents):
+    '''
+    递归合并notes_folder中的所有md文件，内容保存为contents
+    '''
+    if os.path.isfile(notes_folder): # 到单独文件了，退出条件
+        with open(notes_folder, 'r', encoding='utf-8') as f:
+            contents.append(f.read() + '\n')
+        return contents
+    
+    for note in os.listdir(notes_folder):
+        note_path = os.path.join(notes_folder, note)
+        if os.path.isdir(note_path):
+            contents.append(f'# {note}' + '\n') # 将文件夹名保存为1级标题
+            contents = merge_md_helper(note_path, contents)
+        else:
+            with open(note_path, 'r', encoding='utf-8') as f:
+                contents.append(f.read() + '\n')
+    return contents
+
 def merge_md(notes_folder):
     '''
-    合并notes_folder中的所有md文件，合并后文件保存为merged.md
+    递归合并notes_folder中的所有md文件，合并后文件保存为merged.md
     merge all md files in notes_folder, and
     save the merged file as '/notes_folder/merged.md'
     '''
     contents = []
-    for note in os.listdir(notes_folder):
-        note_path = os.path.join(notes_folder, note)
-        if os.path.isfile(note_path):
-            with open(note_path, 'r', encoding='utf-8') as f:
-                contents.append(f.read() + '\n')
-
+    contents = merge_md_helper(notes_folder, contents)
     merged_note_path = os.path.join(notes_folder, 'merged.md')
     with open(merged_note_path, 'a', encoding='utf-8') as f:
         f.writelines(contents)
